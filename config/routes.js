@@ -26,4 +26,18 @@ routes.post('/addNewUser', (req, res) => {
 	return res.json(body);
 });
 
+// Delete User
+routes.delete('/:id', (req, res) => {
+	const id = req.params.id;
+
+	let newDB = db.filter(item => {
+		if(!item[id])
+			return item;
+	});
+
+	db = newDB;
+
+	return res.send(newDB);
+});
+
 module.exports = routes;
